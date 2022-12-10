@@ -38,7 +38,7 @@ class ProdutosControllerTest extends TestCase
             $json->whereAllType([
                 '0.id' => 'integer',
                 '0.nome' => 'string',
-                '0.valor_unitario' => 'string',
+                '0.valor_unitario' => 'double',
             ]);
 
             $product = $products->first();
@@ -77,7 +77,7 @@ class ProdutosControllerTest extends TestCase
             $json->whereAllType([
                 'id' => 'integer',
                 'nome' => 'string',
-                'valor_unitario' => 'string',
+                'valor_unitario' => 'double',
             ]);
 
             $json->whereAll([
@@ -89,7 +89,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Testa endpoint criar um cliente.
+     * Testa endpoint criar um produto.
      *
      * @return void
      */

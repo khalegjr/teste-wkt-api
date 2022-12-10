@@ -118,4 +118,64 @@ class ProdutosControllerTest extends TestCase
             ])->etc();
         });
     }
+
+    /**
+     * Testa endpoint para editar um produto.
+     *
+     * @return void
+     */
+    public function test_put_produto_endpoint()
+    {
+        Produto::factory(1)->createOne();
+        $product = [
+            'nome' => "Atualizando nome",
+            'valor_unitario' => '110.55',
+        ];
+        $response = $this->putJson('/api/produtos/1', $product);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($product) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'valor_unitario',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAll([
+                'nome' => $product['nome'],
+                'valor_unitario' => $product['valor_unitario'],
+            ])->etc();
+        });
+    }
+
+    /**
+     * Testa endpoint para editar um produto com método patch.
+     *
+     * @return void
+     */
+    public function test_patch_produto_endpoint()
+    {
+        Produto::factory(1)->createOne();
+        $product = [
+            'nome' => "Atualizando nome",
+        ];
+        $response = $this->patchJson('/api/produtos/1', $product);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($product) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'valor_unitario',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->where('nome', $product['nome']);
+        });
+    }
 }

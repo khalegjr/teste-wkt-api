@@ -58,7 +58,11 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = $this->product->find($id);
+
+        $product->update($request->all());
+
+        return response()->json($product);
     }
 
     /**

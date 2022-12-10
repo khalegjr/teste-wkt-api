@@ -274,4 +274,18 @@ class ClientControllerTest extends TestCase
             $json->where('logradouro',$clientEdited['logradouro']);
         });
     }
+
+    /**
+     * Testa endpoint para editar um cliente com método patch.
+     *
+     * @return void
+     */
+    public function test_delete_cliente_endpoint()
+    {
+        Cliente::factory(1)->createOne();
+
+        $response = $this->deleteJson('/api/clientes/1');
+
+        $response->assertStatus(204);
+    }
 }

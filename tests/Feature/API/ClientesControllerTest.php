@@ -278,7 +278,7 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * Testa endpoint para editar um cliente com método patch.
+     * Testa endpoint para deletar um cliente.
      *
      * @return void
      */
@@ -292,7 +292,7 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * Testa endpoint criar um cliente.
+     * Testa criar um cliente com dados inválidos.
      *
      * @return void
      */

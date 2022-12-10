@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\ProdutosRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class ProdutosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutosRequest $request)
     {
         $product = $this->product->create($request->all());
 

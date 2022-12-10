@@ -192,4 +192,25 @@ class ProdutosControllerTest extends TestCase
 
         $response->assertStatus(204);
     }
+
+     /**
+     * Testa criar um produto com dados inválidos.
+     *
+     * @return void
+     */
+    public function test_post_produto_should_validate_when_try_create_a_invalid_product()
+    {
+        $response = $this->postJson('/api/produtos', []);
+
+        // dd($response->baseResponse);
+
+        $response->assertStatus(422);
+
+        $response->assertJson(function (AssertableJson $json) {
+            $json->hasAll(['message', 'errors']);
+
+            $json->where('errors.nome.0', 'O campo Nome é obrigatório!')
+                ->where('errors.valor_unitario.0', 'O campo Valor Unitário é obrigatório!');
+        });
+    }
 }

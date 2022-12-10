@@ -87,4 +87,35 @@ class ProdutosControllerTest extends TestCase
             ]);
         });
     }
+
+    /**
+     * Testa endpoint criar um cliente.
+     *
+     * @return void
+     */
+    public function test_post_produto_endpoint()
+    {
+        $product = Produto::factory(1)->makeOne()->toArray();
+
+        $response = $this->postJson('/api/produtos', $product);
+
+        // dd($response->baseResponse);
+
+        $response->assertStatus(201);
+
+        $response->assertJson(function (AssertableJson $json) use($product) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'valor_unitario',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAll([
+                'nome' => $product['nome'],
+                'valor_unitario' => $product['valor_unitario'],
+            ])->etc();
+        });
+    }
 }

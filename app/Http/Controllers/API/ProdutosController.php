@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\ProdutosRequest;
+use App\Http\Requests\API\UpdateProdutosRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,7 @@ class ProdutosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProdutosRequest $request, $id)
     {
         $product = $this->product->find($id);
 

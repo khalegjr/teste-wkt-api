@@ -73,4 +73,66 @@ class ClientControllerTest extends TestCase
             ]);
         });
     }
+
+    /**
+     * Testa endpoint para pegar um cliente.
+     *
+     * @return void
+     */
+    public function test_show_cliente_endpoint()
+    {
+        $client = Cliente::factory(1)->createOne();
+
+        $response = $this->getJson('/api/clientes/' . $client->id);
+
+        // dd($response->baseResponse);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($client) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'cpf',
+                'logradouro',
+                'numero',
+                'bairro',
+                'complemento',
+                'cidade',
+                'cep',
+                'email',
+                'data_nascimento',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAllType([
+                'id' => 'integer',
+                'nome' => 'string',
+                'cpf' => 'string',
+                'logradouro' => 'string',
+                'numero' => 'string',
+                'bairro' => 'string',
+                'complemento' => 'string',
+                'cidade' => 'string',
+                'cep' => 'string',
+                'email' => 'string',
+                'data_nascimento' => 'string',
+            ]);
+
+            $json->whereAll([
+                'id' => $client->id,
+                'nome' => $client->nome,
+                'cpf' => $client->cpf,
+                'logradouro' => $client->logradouro,
+                'numero' => $client->numero,
+                'bairro' => $client->bairro,
+                'complemento' => $client->complemento,
+                'cidade' => $client->cidade,
+                'cep' => $client->cep,
+                'email' => $client->email,
+                'data_nascimento' => $client->data_nascimento,
+            ]);
+        });
+    }
 }

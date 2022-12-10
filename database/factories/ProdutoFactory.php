@@ -18,7 +18,7 @@ class ProdutoFactory extends Factory
     {
         return [
             'nome' => $this->faker->bothify('???? ??? #?'),
-            'valor_unitario' => $this->faker->regexify('[A-Z]{5}[0-4]{3} [A-Z]{3}'),
+            'valor_unitario' => $this->faker->randomFloat('2'),
         ];
     }
 }

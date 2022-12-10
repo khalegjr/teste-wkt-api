@@ -15,9 +15,9 @@ class ClientesController extends Controller
 
     }
 
-    public function index(Cliente $client)
+    public function index()
     {
-        return response()->json($client->all());
+        return response()->json($this->client->all());
     }
 
     public function show($id)

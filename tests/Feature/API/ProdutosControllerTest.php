@@ -178,4 +178,18 @@ class ProdutosControllerTest extends TestCase
             $json->where('nome', $product['nome']);
         });
     }
+
+    /**
+     * Testa endpoint para deletar um produto.
+     *
+     * @return void
+     */
+    public function test_delete_produto_endpoint()
+    {
+        Produto::factory(1)->createOne();
+
+        $response = $this->deleteJson('/api/produtos/1');
+
+        $response->assertStatus(204);
+    }
 }

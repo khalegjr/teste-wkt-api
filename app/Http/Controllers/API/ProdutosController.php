@@ -42,7 +42,9 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+
+        return response()->json($product);
     }
 
     /**

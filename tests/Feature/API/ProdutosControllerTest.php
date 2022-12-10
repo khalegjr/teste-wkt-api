@@ -49,4 +49,42 @@ class ProdutosControllerTest extends TestCase
             ]);
         });
     }
+
+    /**
+     * Testa endpoint para pegar um produto.
+     *
+     * @return void
+     */
+    public function test_show_produto_endpoint()
+    {
+        $product = Produto::factory(1)->createOne();
+
+        $response = $this->getJson('/api/produtos/' . $product->id);
+
+        // dd($response->baseResponse);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($product) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'valor_unitario',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAllType([
+                'id' => 'integer',
+                'nome' => 'string',
+                'valor_unitario' => 'string',
+            ]);
+
+            $json->whereAll([
+                'id' => $product->id,
+                'nome' => $product->nome,
+                'valor_unitario' => $product->valor_unitario,
+            ]);
+        });
+    }
 }

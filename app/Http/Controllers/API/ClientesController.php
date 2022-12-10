@@ -24,4 +24,11 @@ class ClientesController extends Controller
 
         return response()->json($client);
     }
+
+    public function store(Request $request)
+    {
+        $client = $this->client->create($request->all());
+
+        return response()->json($client, 201);
+    }
 }

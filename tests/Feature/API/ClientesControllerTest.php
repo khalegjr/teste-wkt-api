@@ -135,4 +135,49 @@ class ClientControllerTest extends TestCase
             ]);
         });
     }
+
+    /**
+     * Testa endpoint criar um cliente.
+     *
+     * @return void
+     */
+    public function test_post_cliente_endpoint()
+    {
+        $client = Cliente::factory(1)->makeOne()->toArray();
+
+        $response = $this->postJson('/api/clientes', $client);
+
+        $response->assertStatus(201);
+
+        $response->assertJson(function (AssertableJson $json) use($client) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'cpf',
+                'logradouro',
+                'numero',
+                'bairro',
+                'complemento',
+                'cidade',
+                'cep',
+                'email',
+                'data_nascimento',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAll([
+                'nome' => $client['nome'],
+                'cpf' => $client['cpf'],
+                'logradouro' => $client['logradouro'],
+                'numero' => $client['numero'],
+                'bairro' => $client['bairro'],
+                'complemento' => $client['complemento'],
+                'cidade' => $client['cidade'],
+                'cep' => $client['cep'],
+                'email' => $client['email'],
+                'data_nascimento' => $client['data_nascimento'],
+            ])->etc();
+        });
+    }
 }

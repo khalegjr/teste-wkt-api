@@ -147,6 +147,8 @@ class ClientControllerTest extends TestCase
 
         $response = $this->postJson('/api/clientes', $client);
 
+        // dd($response->baseResponse);
+
         $response->assertStatus(201);
 
         $response->assertJson(function (AssertableJson $json) use($client) {
@@ -287,5 +289,33 @@ class ClientControllerTest extends TestCase
         $response = $this->deleteJson('/api/clientes/1');
 
         $response->assertStatus(204);
+    }
+
+    /**
+     * Testa endpoint criar um cliente.
+     *
+     * @return void
+     */
+    public function test_post_cliente_should_validate_when_try_create_a_invalid_client()
+    {
+        $response = $this->postJson('/api/clientes', []);
+
+        // dd($response->baseResponse);
+
+        $response->assertStatus(422);
+
+        $response->assertJson(function (AssertableJson $json) {
+            $json->hasAll(['message', 'errors']);
+
+            $json->where('errors.nome.0', 'O campo Nome é obrigatório!')
+                ->where('errors.cpf.0', 'O campo CPF é obrigatório!')
+                ->where('errors.logradouro.0', 'O campo Logradouro é obrigatório!')
+                ->where('errors.numero.0', 'O campo Número é obrigatório!')
+                ->where('errors.bairro.0', 'O campo Bairro é obrigatório!')
+                ->where('errors.cidade.0', 'O campo Cidade é obrigatório!')
+                ->where('errors.cep.0', 'O campo CEP é obrigatório!')
+                ->where('errors.email.0', 'O campo E-Mail é obrigatório!')
+                ->where('errors.data_nascimento.0', 'O campo Data de Nascimento é obrigatório!');
+        });
     }
 }

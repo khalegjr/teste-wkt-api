@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\ClientesRequest;
+use App\Http\Requests\API\UpdateClientesRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -25,14 +27,14 @@ class ClientesController extends Controller
         return response()->json($client);
     }
 
-    public function store(Request $request)
+    public function store(ClientesRequest $request)
     {
         $client = $this->client->create($request->all());
 
         return response()->json($client, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateClientesRequest $request)
     {
         $client = $this->client->find($id);
 

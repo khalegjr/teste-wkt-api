@@ -17,7 +17,8 @@ class ProdutoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome' => $this->faker->bothify('???? ??? #?'),
+            'valor_unitario' => $this->faker->regexify('[A-Z]{5}[0-4]{3} [A-Z]{3}'),
         ];
     }
 }

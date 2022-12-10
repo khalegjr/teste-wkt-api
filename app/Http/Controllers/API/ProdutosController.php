@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
+    public function __construct(private Produto $product)
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json($this->product->all());
     }
 
     /**

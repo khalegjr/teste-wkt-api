@@ -31,4 +31,13 @@ class ClientesController extends Controller
 
         return response()->json($client, 201);
     }
+
+    public function update($id, Request $request)
+    {
+        $client = $this->client->find($id);
+
+        $client->update($request->all());
+
+        return response()->json($client);
+    }
 }

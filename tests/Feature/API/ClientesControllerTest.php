@@ -180,4 +180,98 @@ class ClientControllerTest extends TestCase
             ])->etc();
         });
     }
+
+    /**
+     * Testa endpoint para editar um cliente.
+     *
+     * @return void
+     */
+    public function test_put_cliente_endpoint()
+    {
+        $client = Cliente::factory(1)->createOne();
+        $clientEdited = [
+            'nome' => "Atualizando nome",
+            'cpf' => $client->cpf,
+            'logradouro' => "Atualizando logradouro",
+            'numero' => "Atualizando número",
+            'bairro' => "Atualizando bairro",
+            'complemento' => "Atualizando complemento",
+            'cidade' => $client->cidade,
+            'cep' => $client->cep,
+            'email' => $client->email,
+            'data_nascimento' => $client->data_nascimento,
+        ];
+        $response = $this->putJson('/api/clientes/1', $clientEdited);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($clientEdited) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'cpf',
+                'logradouro',
+                'numero',
+                'bairro',
+                'complemento',
+                'cidade',
+                'cep',
+                'email',
+                'data_nascimento',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->whereAll([
+                'nome' => $clientEdited['nome'],
+                'cpf' => $clientEdited['cpf'],
+                'logradouro' => $clientEdited['logradouro'],
+                'numero' => $clientEdited['numero'],
+                'bairro' => $clientEdited['bairro'],
+                'complemento' => $clientEdited['complemento'],
+                'cidade' => $clientEdited['cidade'],
+                'cep' => $clientEdited['cep'],
+                'email' => $clientEdited['email'],
+                'data_nascimento' => $clientEdited['data_nascimento'],
+            ])->etc();
+        });
+    }
+
+    /**
+     * Testa endpoint para editar um cliente com método patch.
+     *
+     * @return void
+     */
+    public function test_patch_cliente_endpoint()
+    {
+        Cliente::factory(1)->createOne();
+        $clientEdited = [
+            'nome' => "Atualizando nome",
+            'logradouro' => "Atualizando logradouro",
+        ];
+        $response = $this->patchJson('/api/clientes/1', $clientEdited);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use($clientEdited) {
+            $json->hasAll([
+                'id',
+                'nome',
+                'cpf',
+                'logradouro',
+                'numero',
+                'bairro',
+                'complemento',
+                'cidade',
+                'cep',
+                'email',
+                'data_nascimento',
+                'created_at',
+                'updated_at',
+            ]);
+
+            $json->where('nome', $clientEdited['nome']);
+            $json->where('logradouro',$clientEdited['logradouro']);
+        });
+    }
 }

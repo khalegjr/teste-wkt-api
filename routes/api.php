@@ -24,3 +24,5 @@ Route::get('/clientes', [ClientesController::class, 'index']);
 Route::get('/clientes/{id}', [ClientesController::class, 'show']);
 
 Route::post('/clientes', [ClientesController::class, 'store']);
+
+Route::match(['put', 'patch'], '/clientes/{id}', [ClientesController::class, 'update']);

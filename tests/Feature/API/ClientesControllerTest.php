@@ -38,6 +38,7 @@ class ClientControllerTest extends TestCase
                 '0.bairro' => 'string',
                 '0.complemento' => 'string',
                 '0.cidade' => 'string',
+                '0.estado' => 'string',
                 '0.cep' => 'string',
                 '0.email' => 'string',
                 '0.data_nascimento' => 'string',
@@ -52,6 +53,7 @@ class ClientControllerTest extends TestCase
                 '0.bairro',
                 '0.complemento',
                 '0.cidade',
+                '0.estado',
                 '0.cep',
                 '0.email',
                 '0.data_nascimento',
@@ -67,6 +69,7 @@ class ClientControllerTest extends TestCase
                 '0.bairro' => $client->bairro,
                 '0.complemento' => $client->complemento,
                 '0.cidade' => $client->cidade,
+                '0.estado' => $client->estado,
                 '0.cep' => $client->cep,
                 '0.email' => $client->email,
                 '0.data_nascimento' => $client->data_nascimento,
@@ -99,6 +102,7 @@ class ClientControllerTest extends TestCase
                 'bairro',
                 'complemento',
                 'cidade',
+                'estado',
                 'cep',
                 'email',
                 'data_nascimento',
@@ -115,6 +119,7 @@ class ClientControllerTest extends TestCase
                 'bairro' => 'string',
                 'complemento' => 'string',
                 'cidade' => 'string',
+                'estado' => 'string',
                 'cep' => 'string',
                 'email' => 'string',
                 'data_nascimento' => 'string',
@@ -129,6 +134,7 @@ class ClientControllerTest extends TestCase
                 'bairro' => $client->bairro,
                 'complemento' => $client->complemento,
                 'cidade' => $client->cidade,
+                'estado' => $client->estado,
                 'cep' => $client->cep,
                 'email' => $client->email,
                 'data_nascimento' => $client->data_nascimento,
@@ -200,6 +206,7 @@ class ClientControllerTest extends TestCase
             'complemento' => "Atualizando complemento",
             'cidade' => $client->cidade,
             'cep' => $client->cep,
+            'estado' => $client->estado,
             'email' => $client->email,
             'data_nascimento' => $client->data_nascimento,
         ];
@@ -217,6 +224,7 @@ class ClientControllerTest extends TestCase
                 'bairro',
                 'complemento',
                 'cidade',
+                'estado',
                 'cep',
                 'email',
                 'data_nascimento',
@@ -232,6 +240,7 @@ class ClientControllerTest extends TestCase
                 'bairro' => $clientEdited['bairro'],
                 'complemento' => $clientEdited['complemento'],
                 'cidade' => $clientEdited['cidade'],
+                'estado' => $clientEdited['estado'],
                 'cep' => $clientEdited['cep'],
                 'email' => $clientEdited['email'],
                 'data_nascimento' => $clientEdited['data_nascimento'],
@@ -265,6 +274,7 @@ class ClientControllerTest extends TestCase
                 'bairro',
                 'complemento',
                 'cidade',
+                'estado',
                 'cep',
                 'email',
                 'data_nascimento',
@@ -313,6 +323,7 @@ class ClientControllerTest extends TestCase
                 ->where('errors.numero.0', 'O campo Número é obrigatório!')
                 ->where('errors.bairro.0', 'O campo Bairro é obrigatório!')
                 ->where('errors.cidade.0', 'O campo Cidade é obrigatório!')
+                ->where('errors.estado.0', 'O campo Estado é obrigatório!')
                 ->where('errors.cep.0', 'O campo CEP é obrigatório!')
                 ->where('errors.email.0', 'O campo E-Mail é obrigatório!')
                 ->where('errors.data_nascimento.0', 'O campo Data de Nascimento é obrigatório!');

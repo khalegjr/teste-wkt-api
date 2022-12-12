@@ -31,6 +31,7 @@ class ClientesRequest extends FormRequest
             'bairro' => ['required'],
             'complemento' => ['nullable', 'max:255'],
             'cidade' => ['required'],
+            'estado' => ['required', 'max:2'],
             'cep' => ['required', 'max:9'],
             'email' => ['required', 'email:filter'],
             'data_nascimento' => ['required'],
@@ -57,6 +58,7 @@ class ClientesRequest extends FormRequest
             'complemento' => 'Complemento',
             'cidade' => 'Cidade',
             'cep' => 'CEP',
+            'estado' => 'Estado',
             'email' => 'E-Mail',
             'data_nascimento' => 'Data de Nascimento',
         ];

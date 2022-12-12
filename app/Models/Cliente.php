@@ -17,6 +17,7 @@ class Cliente extends Model
         'bairro',
         'complemento',
         'cidade',
+        'estado',
         'cep',
         'email',
         'data_nascimento',

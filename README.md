@@ -40,3 +40,11 @@ Após isso, basta os seguintes comandos para preparar o ambiente.
 ```bash
 ./vendor/bin/sail artisan test  # para rodar os testes da aplicação
 ```
+
+## Ambiente
+o ambiente é simples, utiliza as seguintes versões de software:
+
+- PHP 8.1
+- MySQL 8.0
+- Node.js 16
+- Laravel 9.19

@@ -33,3 +33,10 @@ Após isso, basta os seguintes comandos para preparar o ambiente.
 ```
 
 Apenas isso e o ambiente já estará funcional.
+
+Execute o seguinte comando para rodar os testes:
+
+Após isso, basta os seguintes comandos para preparar o ambiente.
+```bash
+./vendor/bin/sail artisan test  # para rodar os testes da aplicação
+```

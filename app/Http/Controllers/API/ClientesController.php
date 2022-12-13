@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\ClientesRequest;
 use App\Http\Requests\API\UpdateClientesRequest;
 use App\Models\Cliente;
-use Illuminate\Http\Request;
 
 class ClientesController extends Controller
 {
